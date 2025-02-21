@@ -3,4 +3,4 @@ from memberships.models import *
 # Register your models here.
 
 admin.site.register(Member)
-admin.site.register(Membership)
+admin.site.register(Subscription)
