@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Our Subscription Service</title>
+</head>
+<body>
+    <h2>Welcome, {{ member.name }}!</h2>
+    <p>Thank you for subscribing to <strong>{{ member.membership_type.plan_name }}</strong>.</p>
+    <p>Your subscription is active from <strong>{{ member.start_date }}</strong> to <strong>{{ member.end_date }}</strong>.</p>
+    <p>We appreciate your support!</p>
+    <p>Best regards,<br>Our Gym</p>
+</body>
+</html>
+

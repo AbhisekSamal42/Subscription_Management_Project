@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Registration Successful!</h1>
+    <p>Thank you, {{ member.name }}. Your subscription to <strong>{{ member.membership_type.plan_name }}</strong> is now active.</p>
+    <p>Start Date: {{ member.start_date }}</p>
+    <p>End Date: {{ member.end_date }}</p>
+{% endblock %}

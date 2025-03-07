@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Subscription Plans</h1>
+    <ul>
+        {% for plan in plans %}
+            <li>{{ plan.plan_name }} - {{ plan.duration }} - Rs.{{ plan.cost }}</li>
+        {% empty %}
+            <li>No subscription plans available.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
