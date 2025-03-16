@@ -11,21 +11,21 @@ from membership.forms import *
 
 
 def home_view(request):
-    """Render the Home Page."""
+       #Render the Home Page.
     return render(request, 'home.html')
 
 def plans_view(request):
-    """Render the Subscription Plans Page."""
+       #Render the Subscription Plans Page.
     plans = SubscriptionPlan.objects.all()
     return render(request, 'plans.html', {'plans': plans})
 
 def members_view(request):
-    """Render the Members List Page."""
+        #Render the Members List Page.
     members = Member.objects.all()
     return render(request, 'members.html', {'members': members})
 
 def register_view(request):
-    """Handle Member Registration via HTML Form."""
+        #Handle Member Registration via HTML Form.
     if request.method == 'POST':
         form = MemberForm(request.POST)
         if form.is_valid():
@@ -50,13 +50,13 @@ def register_view(request):
     return render(request, 'register.html', {'form': form})
 
 def confirmation_view(request, member_id):
-    """Render Confirmation Page after Registration."""
+       #Render Confirmation Page after Registration.
     member = get_object_or_404(Member, id=member_id)
     return render(request, 'confirmation.html', {'member': member})
 
 
 def send_welcome_email(member):
-    """Sends a welcome email to the new member."""
+            #Sends a welcome email to the new member.
     subject = "Welcome to Our Subscription Service!"
     html_content = render_to_string('emails/welcome_email.html', {'member': member})
     plain_content = strip_tags(html_content)
@@ -72,22 +72,22 @@ def send_welcome_email(member):
 
 
 class SubscriptionPlanListCreateView(generics.ListCreateAPIView):
-    """API View to list and create subscription plans."""
+       #API View to list and create subscription plans.
     queryset = SubscriptionPlan.objects.all()
     serializer_class = SubscriptionPlanSerializer
 
 class SubscriptionPlanDetailView(generics.RetrieveUpdateDestroyAPIView):
-    """API View to retrieve, update, and delete a specific subscription plan."""
+        #API View to retrieve, update, and delete a specific subscription plan.
     queryset = SubscriptionPlan.objects.all()
     serializer_class = SubscriptionPlanSerializer
 
 class MemberListCreateView(generics.ListCreateAPIView):
-    """API View to list and create members with email notification on registration."""
+      #API View to list and create members with email notification on registration.
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
 
     def perform_create(self, serializer):
-        """Handles auto-calculating end_date and sending email to new members."""
+           #Handles auto-calculating end_date and sending email to new members.
         member = serializer.save()
 
         # Auto-set end_date based on membership_type duration
@@ -104,6 +104,6 @@ class MemberListCreateView(generics.ListCreateAPIView):
         send_welcome_email(member)
 
 class MemberDetailView(generics.RetrieveUpdateDestroyAPIView):
-    """API View to retrieve, update, and delete a specific member."""
+      #API View to retrieve, update, and delete a specific member.
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
